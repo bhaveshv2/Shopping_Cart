@@ -10,22 +10,81 @@ class CartItem extends React.Component{
             img:''
         }
         // this.increamentQuantity = this.increamentQuantity.bind(this);
+        // this.testing();
     }
 
+    /** Promises or ajax calls */
+    // testing(){
+    //     const promise = new Promise((resolve,reject)=>{
+    //         setTimeout(()=>{
+    //             resolve('done')
+    //         },5000);
+    //     });
+
+    //     promise.then(()=>{
+    //         // setState act as like a synchronous call. So every statement finishes instantly and shift to another statement and value get updated instantly.
+    //         this.setState({qty:this.state.qty+10});                 //1+10 = 11
+    //         this.setState({qty:this.state.qty+10});                 //11+10 = 21
+    //         this.setState({qty:this.state.qty+10});                 //21+10 = 31  , It will show 31 after 5s. So no Batching has been done
+
+    //         console.log(this.state);                                //same qty get updated to 31 in the state as well. no need for prevState and another callback
+    //     });
+    // }
+
     increaseQuantity=()=>{
-        // this.state.qty +=1;
-        // setState form 1 => Object form (This form is use when we does not require the previous state)
-        // this.setState({
-        //     title:'Google Pixle'
+        /*this.state.qty +=1;
+        //setState form 1 => Object form (This form is use when we does not require the previous state)
+        this.setState({
+            qty:this.state.qty+1
+        },()=>{
+            console.log(this.state);
+        });*/
+
+        /*//This is the Concept of ***Batching*** in which all the setState merge into one call and re-render the 
+        //component only once. The call is from last setState function and increase the quantity by 3
+        this.setState({
+            qty:this.state.qty+1
+        });
+        this.setState({
+            qty:this.state.qty+1
+        });
+        this.setState({
+            qty:this.state.qty+3
+        });*/
+
+        //setState form 2 => Function form (This form is use when we required the previous state)
+        // this.setState((prevState)=>{
+        //     return {qty:prevState.qty+1}
         // });
 
-        // setState form 2 => Function form (This form is use when we required the previous state)
+        /* //This is also concept of ***batching*** in form of function setState. In function form the batching maintain a queue
+        //will pass the callback in the queue one by one and prevState get updated everytime and react performing batching 
+        //the component get re-render only once
         this.setState((prevState)=>{
             return {qty:prevState.qty+1}
+        });
+        this.setState((prevState)=>{
+            return {qty:prevState.qty+1}
+        });
+        this.setState((prevState)=>{
+            return {qty:prevState.qty+1}
+        });*/
+
+        /** Concept of asynchronous nature of setState() */
+        this.setState((prevState)=>{
+            return {qty:prevState.qty+1}
+        },()=>{
+            console.log(this.state);
         });
     }
 
     decreaseQuantity=()=>{
+        const {qty} = this.state;
+
+        if(qty===0){
+            return;
+        }
+
         this.setState((prevState)=>{
             return {qty:prevState.qty-1}
         });
