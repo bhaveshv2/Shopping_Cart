@@ -13,21 +13,21 @@ class App extends React.Component {
                     price:799,
                     title:'Apple iPhone',
                     qty:5,
-                    img:'',
+                    img:'https://images.unsplash.com/photo-1574763788197-1808b6ac8142?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1492&q=80',
                     id:1,
                 },
                 {
                     price:299,
                     title:'Apple iWatch',
                     qty:10,
-                    img:'',
+                    img:'https://images.unsplash.com/photo-1517420879524-86d64ac2f339?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1226&q=80',
                     id:2,
                 },
                 {
                     price:399,
                     title:'Apple iPad',
                     qty:20,
-                    img:'',
+                    img:'https://images.unsplash.com/photo-1586364191708-0b695214eed9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
                     id:3,
 
                 }
@@ -79,9 +79,20 @@ class App extends React.Component {
 
         products.forEach((product) => {
             count += product.qty;           //For each quantity or for each cartItem we can use count+=1
-        })
+        });
 
         return count;
+    }
+
+    getCartTotal = () => {
+        const {products} = this.state;
+        let total = 0;
+
+        products.forEach((product)=>{                   //we can use products.map as well
+            total += (product.qty * product.price);
+        });
+
+        return total;
     }
 
     render(){
@@ -93,6 +104,7 @@ class App extends React.Component {
                 onIncreaseQuantity={this.handleIncreaseQuantity} 
                 onDecreaseQuantity={this.handleDecreaseQuantity}
                 deleteProduct={this.handleDeleteProduct}/>
+                <div style={{padding:10,fontSize:20}}>Total:${this.getCartTotal()}</div>
             </div>
         );
     }
