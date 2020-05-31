@@ -1,18 +1,6 @@
 import React from 'react';
 
 class CartItem extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            price:1099,
-            title:'Apple Phone',
-            qty:5,
-            img:''
-        }
-        // this.increamentQuantity = this.increamentQuantity.bind(this);
-        // this.testing();
-    }
-
     /** Promises or ajax calls */
     // testing(){
     //     const promise = new Promise((resolve,reject)=>{
@@ -90,7 +78,7 @@ class CartItem extends React.Component{
         });
     }
     render(){
-        const {price,title,qty}=this.state;       //defining variables from above contructor
+        const {price,title,qty}=this.props.product;       //defining variables from above contructor
         return(
             <div className="cart-item">
                 <div className="left-block">
