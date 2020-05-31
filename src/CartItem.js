@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CartItem extends React.Component{
+const CartItem = (props) => {
     // /** Promises or ajax calls */
     // // testing(){
     // //     const promise = new Promise((resolve,reject)=>{
@@ -77,40 +77,40 @@ class CartItem extends React.Component{
     //         return {qty:prevState.qty-1}
     //     });
     // }
-    render(){
-        console.log(this.props);
-        const {price,title,qty}=this.props.product;       //defining variables from above contructor
-        return(
-            <div className="cart-item">
-                <div className="left-block">
-                    <img style={styles.image} alt=""/>
-                </div>
-                <div className="right-block">
-                    <div style={{fontSize:25}}>{title}</div>          {/*use the variable title or this.state.title */}
-                    <div style={{color:'#777'}}>Rs. {price}</div>
-                    <div style={{color:'#777'}}>Qty: {qty}</div>
-                    <div className="cart-item-actions">
-                        {/* buttons */}
-                        <img 
-                            alt="increase" 
-                            className="action-icons" 
-                            src="https://image.flaticon.com/icons/svg/992/992651.svg"
-                            onClick={()=>this.props.onIncreaseQuantity(this.props.product)} />          {/* or we can use here as well this.incrementQuantity.bind(this) */}
-                        <img 
-                            alt="decrease" 
-                            className="action-icons" 
-                            src="https://image.flaticon.com/icons/svg/1828/1828906.svg"
-                            onClick={()=>this.props.onDecreaseQuantity(this.props.product)}/>
-                        <img 
-                            alt="delete" 
-                            className="action-icons" 
-                            src="https://image.flaticon.com/icons/svg/1214/1214428.svg"
-                            onClick={()=>this.props.deleteProduct(this.props.product.id)}/>
-                    </div>
+    
+    console.log(props);
+    const {price,title,qty}=props.product;       //defining variables from above contructor
+    return(
+        <div className="cart-item">
+            <div className="left-block">
+                <img style={styles.image} alt=""/>
+            </div>
+            <div className="right-block">
+                <div style={{fontSize:25}}>{title}</div>          {/*use the variable title or this.state.title */}
+                <div style={{color:'#777'}}>Rs. {price}</div>
+                <div style={{color:'#777'}}>Qty: {qty}</div>
+                <div className="cart-item-actions">
+                    {/* buttons */}
+                    <img 
+                        alt="increase" 
+                        className="action-icons" 
+                        src="https://image.flaticon.com/icons/svg/992/992651.svg"
+                        onClick={()=>props.onIncreaseQuantity(props.product)} />          {/* or we can use here as well this.incrementQuantity.bind(this) */}
+                    <img 
+                        alt="decrease" 
+                        className="action-icons" 
+                        src="https://image.flaticon.com/icons/svg/1828/1828906.svg"
+                        onClick={()=>props.onDecreaseQuantity(props.product)}/>
+                    <img 
+                        alt="delete" 
+                        className="action-icons" 
+                        src="https://image.flaticon.com/icons/svg/1214/1214428.svg"
+                        onClick={()=>props.deleteProduct(props.product.id)}/>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
+
 }
 
 // style Elements in jsx itself or pass style as a object
