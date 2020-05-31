@@ -49,11 +49,25 @@ class Cart extends React.Component{
         const {products}= this.state;               //Taking array of products
         const index=products.indexOf(product);       //Taking index of particular product
 
+        if(products[index].qty===0){
+            return;
+        }
+
         products[index].qty -= 1;
 
         this.setState({
             products           //This is called short hands as products:products both are same that why
         });
+    }
+
+    handleDeleteProduct=(id)=>{
+        const {products} = this.state;
+
+        const items = products.filter((item)=>item.id!==id); // (item)=>item.id!==id, will return the array of products in which 'id' matching product is not there [{}]
+
+        this.setState({
+            products:items
+        })
     }
 
     render(){
@@ -62,7 +76,12 @@ class Cart extends React.Component{
             <div className="cart">
                 {products.map((product)=>{
                     return (
-                        <CartItem product={product} key={product.id} onIncreaseQuantity={this.handleIncreaseQuantity} onDecreaseQuantity={this.handleDecreaseQuantity}/>
+                        <CartItem 
+                            product={product} 
+                            key={product.id} 
+                            onIncreaseQuantity={this.handleIncreaseQuantity} 
+                            onDecreaseQuantity={this.handleDecreaseQuantity}
+                            deleteProduct={this.handleDeleteProduct}/>
                         // OR <CartItem product={product} key={product.id} func={console.log('sdsd')} comp={<CartItem/>} jsx={<h1>Hey! Test</h1>} />    //pass fnctions, components or jsx as props
                     )
                 })}
