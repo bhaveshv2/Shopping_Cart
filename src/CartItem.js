@@ -78,12 +78,13 @@ const CartItem = (props) => {
     //     });
     // }
     
-    console.log(props);
+    
     const {price,title,qty}=props.product;       //defining variables from above contructor
+    const { product } = props;
     return(
         <div className="cart-item">
             <div className="left-block">
-                <img style={styles.image} alt="" src={props.product.img}/>
+                <img style={styles.image} alt="" src={product.img}/>
             </div>
             <div className="right-block">
                 <div style={{fontSize:25}}>{title}</div>          {/*use the variable title or this.state.title */}
@@ -95,17 +96,17 @@ const CartItem = (props) => {
                         alt="increase" 
                         className="action-icons" 
                         src="https://image.flaticon.com/icons/svg/992/992651.svg"
-                        onClick={()=>props.onIncreaseQuantity(props.product)} />          {/* or we can use here as well this.incrementQuantity.bind(this) */}
+                        onClick={()=>props.onIncreaseQuantity(product)} />          {/* or we can use here as well this.incrementQuantity.bind(this) */}
                     <img 
                         alt="decrease" 
                         className="action-icons" 
                         src="https://image.flaticon.com/icons/svg/1828/1828906.svg"
-                        onClick={()=>props.onDecreaseQuantity(props.product)}/>
+                        onClick={()=>props.onDecreaseQuantity(product)}/>
                     <img 
                         alt="delete" 
                         className="action-icons" 
                         src="https://image.flaticon.com/icons/svg/1214/1214428.svg"
-                        onClick={()=>props.deleteProduct(props.product.id)}/>
+                        onClick={()=>props.deleteProduct(product.id)}/>
                 </div>
             </div>
         </div>

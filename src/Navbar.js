@@ -30,10 +30,14 @@ const styles = {
         
     },
     cartCount:{
-        background:'orange',
+        background:'black',
         borderRadius:'50%',
-        padding:'2px 8px',
-        
+        padding:'2px 4px',
+        position:'absolute',
+        right:2,
+        top:-1,
+        fontSize:12,
+        color:'white'
     }
 }
 
